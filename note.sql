@@ -34,3 +34,9 @@ update your_table set first_column = 'newvalue',second_column = 'another_value';
 #update 不仅可以修改列的值大小，还可以更新列名。
 #若将where语句省略，表中的每一行数据都改成set后面的语句了
 #怕更新错错误，可以巧妙的使用where语句
+update drink_info set cost = 3.5 where drink_name = 'Blue Moon';
+#需要注意where 后面需要是可以区分的数据（unique） 
+#mysql可以对数字行进行简单的数学计算
+update drink_info set cost = cost + 1 ;(这个分号需要验证)
+where drink_name='Blue Moon' or drink_name='Oh My Gosh' or drink_name='Lime Fizz';
+#update 可以用来执行多行记录，并且可以对数字进行简单的数学运算
