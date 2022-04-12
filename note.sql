@@ -21,6 +21,12 @@ select * from easy_drinks where  main not in ('soda','iced tea');
 #NULL关键字使用
 select * from easy_drinks where not main is null;
 select * from easy_drinks where main  is not null;
+<<<<<<< HEAD
+##比较难里理解
+select data_name from black_book where not data_name like 'A%' and not data_name like 'B%';
+select data_name from black_book where  data_name not between 'A%' and  'B%';
+
+=======
 #数据库无法根据数据的顺序能得到最新的数据
 #delete 的正确使用
 delete from clown_info where activities = 'dancing'; #记得加上where要不然数据都会被删除
@@ -40,3 +46,4 @@ update drink_info set cost = 3.5 where drink_name = 'Blue Moon';
 update drink_info set cost = cost + 1 ;(这个分号需要验证)
 where drink_name='Blue Moon' or drink_name='Oh My Gosh' or drink_name='Lime Fizz';
 #update 可以用来执行多行记录，并且可以对数字进行简单的数学运算
+>>>>>>> 78b3ee01e322b6f65117f6034b764cc199365b4
