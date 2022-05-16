@@ -127,3 +127,27 @@ select prod_name, prod_id from products where prod_name like '_ ton anvil';
 #在确认一定要使用通配符时，除非绝对有必要，否者不要把它们用在搜索模式的开始处，，把通配符置于搜索模式的开始处，搜索
 起来是最慢的
 #仔细注意通配符的位置，如果放错地方，可能不会返回想要的数据。
+select prod_name from products where prod_name regexp '[123] ton' order by prod_name;
+select prod_name from products where prod_name regexp '[1|2|3] ton' order by prod_name;
+#正则表达式
+符号“[]”表示或 ^表示否定 [^123]匹配除这些字符外的任何东西 []符号是另一种形式的or语句
+#正则表达式
+[0123456789] 等价于[0-9]集合将匹配数字0到9 [a-z]可以匹配任意字母字符
+为了匹配特殊字符，必须使用\\为前导。\\-表示查找-，\\.表示查找.#\\表示转义符号 正则表达式内具有特殊意义的所有字符都
+必须以这种方式转义
+select vend_name from vendors where vend_name regexp '\\.' order by vend_name;
+#正则表达式重复元字符
+* 0个或多个匹配
++ 1个或多个匹配（等于{1,}）
+? 0个或1个匹配（等于{0,1}）
+{n} 指定数目的匹配
+{n,} 不少于指定数目的匹配
+{n,m} 匹配数目的范围（m不超过255）
+#正则表达式'\\([0-9] sticks?\\)'解释
+\\（ 匹配 ）；[0-9]匹配任意数字；sticks？匹配stick 和sticks ？符号匹配它前面的任何字符的0次或1次出现，\\)匹配)
+说明：没有？ stick匹配sticks会非常困难
+select prod_name from products where prod_name regexp '[[:digit:]]{4}' order by prod_name;
+select prod_name from products where prod_name regexp '[0-9][0-9][0-9][0-9]' order by prod_name;
+上述方法等价
+[:digit:]匹配任意数字，因而他为数字的一个集合。{4}确切地要求它前面的字符（任意数字）出现4次，所以[[:digit:]]{4}匹配连在一起的任意
+4位数字
