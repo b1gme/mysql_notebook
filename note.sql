@@ -162,3 +162,17 @@ select prod_name from products where prod_name regexp '^[0-9\\.]' order by prod_
 #使regexp起类似like的作用 like和regexp不同在于like匹配整个串而regexp匹配子串。利用定位符，通过^开始每个表达式，
 用$结束每个表达式，可以使regexp的作用与like一样
 #简单的正则表达式测试（不适用数据库表的情况）select 'hello' regexp '[0-9]'
+#计算字段
+计算字段是运行时在select语句内创建的
+#多数DBMS使用+或||来实现拼接，MYSQL则使用Concat（）函数来实现，在将SQL语句转换成MYSQL语句时一定要把这个区别铭记在心
+select concat(vend_name, '(', vend_country, ')') from vendors order by vend_name;
+concat（）函数拼接串。即把多个串链接起来形成一个较长的串，该函数需要一个或多个指定的串，各个串之间用逗号分隔。
+例如：concat(vend_name, '(', vend_country, ')')
+select concat(rtrim(vend_name), '(', rtrim(vend_country), ')') from vendors order by vend_name;
+rtrim（）函数去掉值右边的所有空格，通过使用该函数对各个列进行处理
+ltrim（）函数去掉值左边的所有空格
+trim（）函数去掉串左右两边的空格
+#使用别名as 
+select concat(rtrim(vend_name), '(', rtrim(vend_country), ')') as vend_title from vendors order by vend_name;
+#vend_name 这个别名，任何客户机应用都可以按名引用这个列，就像它是一个实际的表列一样
+#别名可以灵活使用
